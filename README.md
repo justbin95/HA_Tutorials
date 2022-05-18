@@ -70,7 +70,11 @@ ssh root@192.168.x.x #你查询到的ip地址
 
 ![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_21.32.41.png?raw=true)
 
-按提示创建用户。因为联网了，时间和时区会自动设置。用date命令看时间，如果时间不自动更新，请关掉防火墙，不然时间不对的话后面会出错。然后重新SSH到你刚创建的用户。
+按提示创建用户。因为联网了，时间和时区会自动设置。用 `date` 命令看时间，如果时间不自动更新，请关掉防火墙，不然时间不对的话后面会出错。然后重新SSH到你刚创建的用户。
+
+有人可能会在装完Home Assistant重启后遇到无法自动获取ip地址的情况（比如我），所以我们这里先把ip设为静态。SSH 输入 `armbian-config` ，选 `network -> IP -> eth0 -> Static` 然后输入你想要的ip地址、掩码、路由器地址及DNS，回车保存，ESC退出到命令行。
+
+![](https://github.com/justbin95/HA-Supervised/blob/main/image/20220518154654.png?raw=true)
 
 ## 三、把Armbian写入自带eMMC（可选）
 
@@ -83,11 +87,11 @@ sudo -i
 ./install-aml.sh
 ```
 
-等待数分钟，若显示 `Complete Copy OS to eMMC` ，则写入成功。接下来 `poweroff` 关机，拔电源和U盘后重新插点开机，就可以直接进入Armbian系统了。
+等待数分钟，若显示 `Complete Copy OS to eMMC` ，则写入成功。接下来 `poweroff` 关机，拔电源和U盘后重新插电开机，就可以直接进入Armbian系统了。
 
 ## 四、更新软件包、安装必备组件及Docker
 
-分别在SSH输入以下代码并回车（一行一回车）（尽量能顺畅连接国际互联网）。
+用新设置的ip进入SSH，分别输入以下代码并回车（一行一回车）（尽量能顺畅连接国际互联网）。
 
 ```shell
 sudo -i
@@ -123,7 +127,6 @@ sudo -i
 wget https://github.com/home-assistant/supervised-installer/releases/latest/download/homeassistant-supervised.deb
 dpkg -i homeassistant-supervised.deb
 ```
-
 一会儿会出现以下选择架构界面，方向键选择 `qemuarm-64` ，按回车确认。
 
 ![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_22.10.04.png?raw=true)
@@ -132,7 +135,7 @@ dpkg -i homeassistant-supervised.deb
 
 ![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_22.11.47.png?raw=true)
 
-此时还在后台安装，等待几分钟之后，在浏览器输入 `http://192.168.*.*:8123`（*为你的n1的ip地址）即可进入后台。此时正在初始化（如下图），耐心等待5-10分钟后，显示用户注册画面，即安装完成！
+此时还在后台安装，等待几分钟之后，在浏览器输入 `http://192.168.*.*:8123`（*为你的n1的ip地址）即可进入后台。此时正在初始化（如下图），耐心等待5-10分钟后，显示创建账户画面，即安装完成！
 
 ![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_22.21.50.png?raw=true)
 
@@ -144,9 +147,11 @@ dpkg -i homeassistant-supervised.deb
 
 如果需要蓝牙，那可以进行此步。前提要在第一步中替换 `meson-gxl-s905d-phicomm-n1.dtb` 文件。
 
-电脑上用MobaXterm、winSCP等FTP软件登录n1，把我提供的 `BCM4345C0.hcd` 文件放到 `/lib/firmware/brcm` 这个目录。回到ssh，输入 `armbian-config` ，选 `network -> install BLE` 。安装完成后，先 `reboot` 重启。然后用 `hciconfig` 命令，如果显示的 `BD ADDRESS` 其中一个不是0000...或者AAAA...就说明安装成功了。
+电脑上用MobaXterm、winSCP等FTP软件登录n1，把我提供的 `BCM4345C0.hcd` 文件放到 `/lib/firmware/brcm` 这个目录。回到ssh，输入 `armbian-config` ，选 `network -> BT install` 。安装完成后，先按ESC退出到命令行， `reboot` 重启。然后用 `hciconfig` 命令，如果显示的 `BD ADDRESS` 其中一个不是0000...或者AAAA...就说明安装成功了。
 
-## 七、配置Home Assistant
+![](https://github.com/justbin95/HA-Supervised/blob/main/image/20220518154918.png?raw=true)
+
+## 八、配置Home Assistant
 
 安装完Home Assistant，还需要进行一些设置，才能更好地使用。
 
