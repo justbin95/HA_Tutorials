@@ -151,7 +151,7 @@ dpkg -i homeassistant-supervised.deb
 
 ![](https://github.com/justbin95/HA-Supervised/blob/main/image/20220518154918.png?raw=true)
 
-## 八、配置Home Assistant
+## 七、配置Home Assistant
 
 安装完Home Assistant，还需要进行一些设置，才能更好地使用。
 
