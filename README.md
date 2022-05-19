@@ -12,7 +12,7 @@
 
 本教程特点：非一键安装脚本，使用官方原生源安装，内容干净，支持在线更新
 
-本教程前提：n1已经降级，且打开adb调试，（如果没有请参考 https://bbs.hassbian.com/thread-7659-1-1.html ）及16GB以上高质量品牌u盘，且网络能顺畅访问国际互联网。
+本教程前提：n1已经降级，且打开adb调试，（如果没有请参考 https://bbs.hassbian.com/thread-7659-1-1.html ）及16GB以上高质量品牌u盘，且网络能使用白名单模式访问国际互联网。
 
 ## 一、写入Armbian镜像到U盘（Debian11 bullseye）
 
@@ -204,13 +204,5 @@ wget -O - https://get.hacs.xyz | bash -
 回到之前页面，等待片刻，HACS安装完成，此时，左边栏就会出现HACS的选项。
 
 ![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-18_00.10.42.png?raw=true)
-
-### 3、安装Node-RED
-
-Node-RED 是构建物联网应用程序的一个强大工具，其重点是简化代码块的“连接”以执行任务。说人话就是能以节点的方式更直观的进行更复杂的自动化设置。
-
-在Home Assistant后台界面，点击“配置”-”加载项“，在右下角“加载项商店”内找到Node-RED，并进行安装。重启即可在左侧看到Node-RED选项。
-
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-18_00.18.08.png?raw=true)
 
 至此，Home Assistant的基础配置基本完成。接下来就可接入设备了。更多内容我们以后再讲。
