@@ -10,6 +10,8 @@
 >
 > Home Assistant Supervised: 这个也是全套，跟HAOS的区别是可以装在普通Linux上因此适合更多硬件，N1用的就是这个。安装原理就是手动把docker，Home Assistant Core、Supervisor和其他所有必要组件安装在普通Linux系统上。为了花更多精力提升HA本上而不是debug各种兼容性问题，去年官方大幅减少支持的环境，目前唯一支持的是Debian 11，否则，轻则安装完后显示“不支持的操作系统”，重则无法安装）
 
+本教程所需文件可以在此获得 https://github.com/justbin95/HA-Supervised/releases/download/1.0.0/n1_tools.zip
+
 本教程特点：非一键安装脚本，使用官方原生源安装，内容干净，支持在线更新
 
 本教程前提：n1已经降级，且打开adb调试，（如果没有请参考 https://bbs.hassbian.com/thread-7659-1-1.html ）及16GB以上高质量品牌u盘，且网络能使用白名单模式访问国际互联网。
