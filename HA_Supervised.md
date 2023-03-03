@@ -10,7 +10,7 @@
 >
 > Home Assistant Supervised: 这个也是全套，跟HAOS的区别是可以装在普通Linux上因此适合更多硬件，N1用的就是这个。安装原理就是手动把docker，Home Assistant Core、Supervisor和其他所有必要组件安装在普通Linux系统上。为了花更多精力提升HA本上而不是debug各种兼容性问题，去年官方大幅减少支持的环境，目前唯一支持的是Debian 11，否则，轻则安装完后显示“不支持的操作系统”，重则无法安装）
 
-本教程所需文件可以在此获得 https://github.com/justbin95/HA-Supervised/releases/download/1.0.0/n1_tools.zip
+本教程所需文件可以在此获得 https://github.com/justbin95/HA_Tutorials/releases/download/1.0.0/n1_tools.zip
 
 本教程特点：非一键安装脚本，使用官方原生源安装，内容干净，支持在线更新
 
@@ -22,11 +22,11 @@
 
 固件目录：https://users.armbian.com/balbes150/ ，选择n1的arm-64的Bullseye固件。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_20.47.43.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_20.47.43.png?raw=true)
 
 下载解压后用BalenaEtcher（官网下载：https://www.balena.io/etcher/ ）将镜像写入U盘，记得提前备份U盘文件。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_21.02.59.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_21.02.59.png?raw=true)
 
 写入之后，打开U盘，如果要使用蓝牙功能，把我提供的 `meson-gxl-s905d-phicomm-n1.dtb` 文件，复制到 `/dtb/amlogic/` 覆盖。
 
@@ -40,7 +40,7 @@ FDT /dtb/amlogic/meson-gxl-s905d-phicomm-n1.dtb
 
 并取消注释，最后一行也取消注释，前面rk3399的也全部注释。保存。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_21.11.08.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_21.11.08.png?raw=true)
 
 如果嫌麻烦，也可以直接粘贴以下内容进去，覆盖原先内容。（删减了注释掉的内容）
 
@@ -70,13 +70,13 @@ ssh root@192.168.x.x #你查询到的ip地址
 
 （win10自带OpenSSH，可以直接在CMD里面用SSH。如果没有，则用第三方SSH，比如Xshell、Putty等，我这里用MobaXterm举例）用户名root，密码1234。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_21.32.41.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_21.32.41.png?raw=true)
 
 按提示创建用户。因为联网了，时间和时区会自动设置。用 `date` 命令看时间，如果时间不自动更新，请关掉防火墙，不然时间不对的话后面会出错。然后重新SSH到你刚创建的用户。
 
 有人可能会在装完Home Assistant重启后遇到无法自动获取ip地址的情况（比如我），所以我们这里先把ip设为静态。SSH 输入 `armbian-config` ，选 `network -> IP -> eth0 -> Static` 然后输入你想要的ip地址、掩码、路由器地址及DNS，回车保存，ESC退出到命令行。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/20220518154654.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/20220518154654.png?raw=true)
 
 ## 三、把Armbian写入自带eMMC（可选）
 
@@ -105,11 +105,11 @@ curl -fsSL get.docker.com | sh
 
 如果在安装过程中有选项需要选择（如下图），直接按回车即可。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_21.36.41.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_21.36.41.png?raw=true)
 
 出现以下画面则代表Docker安装完成。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_21.54.43.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_21.54.43.png?raw=true)
 
 依次执行以下命令安装OS agent。Supervisor通过OS agent对接操作系统，官方已经强制要求。（截止本文发布，最新版本为1.2.2，可参考 https://github.com/home-assistant/os-agent/releases 来获取最新版本链接，n1为aarch64版本）
 
@@ -131,19 +131,19 @@ dpkg -i homeassistant-supervised.deb
 ```
 一会儿会出现以下选择架构界面，方向键选择 `qemuarm-64` ，按回车确认。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_22.10.04.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_22.10.04.png?raw=true)
 
 一段时间后出现以下画面，代表安装完成。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_22.11.47.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_22.11.47.png?raw=true)
 
 此时还在后台安装，等待几分钟之后，在浏览器输入 `http://192.168.*.*:8123`（*为你的n1的ip地址）即可进入后台。此时正在初始化（如下图），耐心等待5-10分钟后，显示创建账户画面，即安装完成！
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_22.21.50.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_22.21.50.png?raw=true)
 
 显示以下画面，安装完成。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_22.22.44.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_22.22.44.png?raw=true)
 
 ## 六、安装蓝牙驱动（可选）
 
@@ -151,7 +151,7 @@ dpkg -i homeassistant-supervised.deb
 
 电脑上用MobaXterm、winSCP等FTP软件登录n1，把我提供的 `BCM4345C0.hcd` 文件放到 `/lib/firmware/brcm` 这个目录。回到ssh，输入 `armbian-config` ，选 `network -> BT install` 。安装完成后，先按ESC退出到命令行， `reboot` 重启。然后用 `hciconfig` 命令，如果显示的 `BD ADDRESS` 其中一个不是0000...或者AAAA...就说明安装成功了。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/20220518154918.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/20220518154918.png?raw=true)
 
 ## 七、配置Home Assistant
 
@@ -161,13 +161,13 @@ dpkg -i homeassistant-supervised.deb
 
 第一次进入后台，会让你设置账户、密码，及家庭名称、位置、时区等，按实际情况设置。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_22.42.22.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_22.42.22.png?raw=true)
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_22.42.50.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_22.42.50.png?raw=true)
 
 接下来的画面直接按下一步，最后点击完成。就能进入Home Assistant主界面。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-17_22.45.30.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-17_22.45.30.png?raw=true)
 
 ### 2、安装HACS
 
@@ -185,26 +185,26 @@ wget -O - https://get.hacs.xyz | bash -
 
 重启后，在“配置”-“设备与服务”中添加集成。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-18_00.00.29.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-18_00.00.29.png?raw=true)
 
 此界面全部勾选，点提交。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-18_00.01.36.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-18_00.01.36.png?raw=true)
 
 复制下方代码，打开上面的Github链接。（如果没有Github账号就注册一个）
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-18_00.04.24.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-18_00.04.24.png?raw=true)
 
 在弹出的页面粘贴代码。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-18_00.04.57.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-18_00.04.57.png?raw=true)
 
 点击Authorize hacs即可。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-18_00.08.07.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-18_00.08.07.png?raw=true)
 
 回到之前页面，等待片刻，HACS安装完成，此时，左边栏就会出现HACS的选项。
 
-![](https://github.com/justbin95/HA-Supervised/blob/main/image/iShot2022-05-18_00.10.42.png?raw=true)
+![](https://github.com/justbin95/HA_Tutorials/blob/main/image/iShot2022-05-18_00.10.42.png?raw=true)
 
 至此，Home Assistant的基础配置基本完成。接下来就可接入设备了。更多内容我们以后再讲。
