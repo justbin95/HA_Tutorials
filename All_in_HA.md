@@ -1,4 +1,6 @@
-# 万物皆可Home Assistant
+# 万物皆可Home Assistant 教你把各种设备接入HA
+
+配合[视频教程](https://www.bilibili.com/video/BV1fT411h778)食用更佳！
 
 废话不多说，本期教程教大家把常见的智能家居平台设备接入Home Assistant（以下简称 HA），包括米家、Aqara Home、涂鸦，以及其他支持HomeKit的设备。其他平台因为我没相应设备，就烦请大家多搜搜教程啦，推荐一个论坛“[瀚思彼岸](https://bbs.hassbian.com)”。
 
@@ -13,6 +15,7 @@
 | 涂鸦（Wi-Fi）                                 | 灯、空调、风扇等Wi-Fi设备                                    | [Local Tuya](https://github.com/rospogrigio/localtuya)       |                                                        |
 | 涂鸦（ZigBee/BLE）                            | ZigBee、蓝牙网关及其子设备                                   | Tuya（云端）                                                 | 需要开发者平台账号且购买IoT Core连接服务（免费两个月） |
 | 小燕                                          | 灯、开关、窗帘、插座、传感器等                               | [homeassistant-terncy-component](https://github.com/rxwen/homeassistant-terncy-component) |                                                        |
+| 美的                                         | 美的美居设备                                             | [Midea AC LAN](https://github.com/georgezhao2010/midea_ac_lan)                                                     |                                                        |
 | Apple                                         | Apple TV/HomePod                                             | Apple TV                                                     |                                                        |
 | 索尼                                          | 电视                                                         | Sony Bravia TV                                               |                                                        |
 | 安卓电视/盒子                                 | 支持ADB的安卓电视/盒子                                       | Android TV                                                   |                                                        |
