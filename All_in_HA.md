@@ -15,7 +15,7 @@
 | 涂鸦（Wi-Fi）                                 | 灯、空调、风扇等Wi-Fi设备                                    | [Local Tuya](https://github.com/rospogrigio/localtuya)       |                                                        |
 | 涂鸦（ZigBee/BLE）                            | ZigBee、蓝牙网关及其子设备                                   | Tuya（云端）                                                 | 需要开发者平台账号且购买IoT Core连接服务（免费两个月） |
 | 小燕                                          | 灯、开关、窗帘、插座、传感器等                               | [homeassistant-terncy-component](https://github.com/rxwen/homeassistant-terncy-component) |                                                        |
-| 美的                                         | 美的美居设备                                             | [Midea AC LAN](https://github.com/georgezhao2010/midea_ac_lan)                                                     |                                                        |
+| 美的                                          | 美的美居设备                                                 | [Midea AC LAN](https://github.com/georgezhao2010/midea_ac_lan) |                                                        |
 | Apple                                         | Apple TV/HomePod                                             | Apple TV                                                     |                                                        |
 | 索尼                                          | 电视                                                         | Sony Bravia TV                                               |                                                        |
 | 安卓电视/盒子                                 | 支持ADB的安卓电视/盒子                                       | Android TV                                                   |                                                        |
@@ -28,7 +28,7 @@ HA的安装我[之前的视频](https://www.bilibili.com/video/BV1DU4y1m74Z)讲�
 
 ### 本教程需要的环境：
 
-1、安装了 [HACS 商店](https://hacs.xyz/docs/setup/download) 的Home Assistant。
+1、安装了 [HACS 商店](https://hacs.xyz/docs/setup/download) 的 Home Assistant。
 
 2、流畅的**互联网**环境。
 
@@ -184,7 +184,7 @@ HA的安装我[之前的视频](https://www.bilibili.com/video/BV1DU4y1m74Z)讲�
 
 M1S:
 
-```bash
+```shell
 cd /tmp && wget -O /tmp/curl "http://master.dl.sourceforge.net/project/mgl03/bin/curl?viasf=1" && chmod a+x /tmp/curl
 /tmp/curl -s -k -L -o /tmp/m1s_update.sh https://raw.githubusercontent.com/niceboygithub/AqaraM1SM2fw/main/modified/M1S/m1s_update.sh
 chmod a+x /tmp/m1s_update.sh && /tmp/m1s_update.sh
@@ -192,13 +192,13 @@ chmod a+x /tmp/m1s_update.sh && /tmp/m1s_update.sh
 
 P3:
 
-```bash
+```shell
 cd /tmp && wget -O /tmp/curl "http://master.dl.sourceforge.net/project/mgl03/bin/curl?viasf=1" && chmod a+x /tmp/curl
 /tmp/curl -s -k -L -o /tmp/p3_update.sh https://raw.githubusercontent.com/niceboygithub/AqaraM1SM2fw/main/modified/P3/p3_update.sh
 chmod a+x /tmp/p3_update.sh && /tmp/p3_update.sh
 ```
 
-显示 “Update Done” 之后，刷入成功。然后输入 `reboot` 重启。
+显示 “Update Done” 之后，刷入成功。然后输入 `reboot` 重启。之后如果有固件更新，**请不要在App里直接更新**，在前面的[固件版本仓库](https://github.com/niceboygithub/AqaraM1SM2fw)里查询到更新新版本之后，再此在 Telnet 中运行上面三行命令即可。
 
 <img src="https://raw.githubusercontent.com/justbin95/HA_Tutorials/main/image/HA_Allinone/20230306195125.png" alt="20230306195125" style="zoom:50%;" />
 
