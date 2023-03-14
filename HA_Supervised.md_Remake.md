@@ -1,6 +1,6 @@
-# Armbian 安装 Home Assistant( Supervised)
+# Armbian 安装 Home Assistant (Supervised)
 
-
+本教程由群友 星火燎原 收集整理
 
 ## 1.前提条件
 
