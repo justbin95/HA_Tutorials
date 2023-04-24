@@ -31,7 +31,7 @@
 
 ### AM模块介绍
 
-<img src="https://justbin-picgo.oss-cn-hangzhou.aliyuncs.com/img/FP2_to_Mijia/image-20230423200951093.png" alt="image-20230423200951093" style="zoom:50%;" />
+<img src="https://justbin-picgo.oss-cn-hangzhou.aliyuncs.com/img/FP2_to_Mijia/image-20230423200951093.png" alt="image-20230423200951093" style="zoom:33%;" />
 
 AM模块是 ZigBee 协议的子设备，所以在米家和 Aqara Home 都需要 ZigBee 网关才能接入。接入 Aqara Home 之后，可以看到它有一个”设置参数“的执行动作，一共有18个选项。
 
